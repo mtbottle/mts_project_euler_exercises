@@ -40,9 +40,38 @@ def primes(n):
     i += 1
   return lst_of_primes
 
+def sum_prime_sieve2(num):
+   primes = range(1, num, 2) # gets rid of primes, but need to append 2
+   primes.insert(1, 2)
+
+   i = 3
+   while i < sqrt(num):
+     primes = [x for x in primes if x % i != 0]
+     i += 1   
+
+   return sum(primes)
+
+def sum_prime_sieve(num):
+   ''' Given the bound, give the sum of all the primes under num '''
+   primes = []
+   primes.append(2)
+
+   for n in range(3, num, 2):     
+     prime = True
+     for i in primes:
+       if n % i == 0:
+         prime = False
+         break
+     if prime:
+       primes.append(n)
+       print n,
+
+   return sum(primes)
+
 if __name__ == "__main__":
   #primes = get_lst_primes_slow(2000000)
   #print sum(primes) + 1
-  print primes(2000000)
+  #print primes(2000000)
   #print sum(primes(100))
-
+  #print sum_prime_sieve2(100)
+  print sum_prime_sieve(200)
